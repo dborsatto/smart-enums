@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Madisoft\SmartEnums\Tests\Stub;
+namespace DBorsatto\SmartEnums\Tests\Stub;
 
-use Madisoft\SmartEnums\EnumInterface;
-use Madisoft\SmartEnums\Exception\SmartEnumException;
+use DBorsatto\SmartEnums\EnumInterface;
+use DBorsatto\SmartEnums\Exception\SmartEnumException;
 use function array_keys;
 use function array_map;
 

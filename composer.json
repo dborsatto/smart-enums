@@ -1,5 +1,5 @@
 {
-    "name": "madisoft/smart-enums",
+    "name": "dborsatto/smart-enums",
     "description": "",
     "type": "library",
     "license": "MIT",
@@ -16,12 +16,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Madisoft\\SmartEnums\\": "src/"
+            "DBorsatto\\SmartEnums\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Madisoft\\SmartEnums\\Tests\\": "tests/"
+            "DBorsatto\\SmartEnums\\Tests\\": "tests/"
         }
     },
     "scripts": {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Madisoft\SmartEnums;
+namespace DBorsatto\SmartEnums;
 
-use Madisoft\SmartEnums\Exception\SmartEnumException;
+use DBorsatto\SmartEnums\Exception\SmartEnumException;
 use function array_flip;
 
 class EnumFormatter

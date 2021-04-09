@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Madisoft\SmartEnums\Bridge\Symfony\Form\Transformer;
+namespace DBorsatto\SmartEnums\Bridge\Symfony\Form\Transformer;
 
-use Madisoft\SmartEnums\EnumFactory;
-use Madisoft\SmartEnums\EnumInterface;
-use Madisoft\SmartEnums\Exception\SmartEnumException;
+use DBorsatto\SmartEnums\EnumFactory;
+use DBorsatto\SmartEnums\EnumInterface;
+use DBorsatto\SmartEnums\Exception\SmartEnumException;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use function is_array;

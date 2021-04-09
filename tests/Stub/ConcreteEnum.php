@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Madisoft\SmartEnums\Tests\Stub;
+namespace DBorsatto\SmartEnums\Tests\Stub;
 
-use Madisoft\SmartEnums\AbstractEnum;
+use DBorsatto\SmartEnums\AbstractEnum;
 
 final class ConcreteEnum extends AbstractEnum
 {

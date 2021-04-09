@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Madisoft\SmartEnums\Tests\Test;
+namespace DBorsatto\SmartEnums\Tests\Test;
 
-use Madisoft\SmartEnums\EnumFormatter;
-use Madisoft\SmartEnums\Exception\SmartEnumException;
-use Madisoft\SmartEnums\Tests\Stub\Enum;
+use DBorsatto\SmartEnums\EnumFormatter;
+use DBorsatto\SmartEnums\Exception\SmartEnumException;
+use DBorsatto\SmartEnums\Tests\Stub\Enum;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use function array_flip;
