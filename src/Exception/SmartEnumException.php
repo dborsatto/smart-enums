@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Madisoft\SmartEnums\Exception;
+namespace DBorsatto\SmartEnums\Exception;
 
 use Exception;
 use Throwable;

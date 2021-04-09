@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Madisoft\SmartEnums\Bridge\Doctrine\Type;
+namespace DBorsatto\SmartEnums\Bridge\Doctrine\Type;
 
+use DBorsatto\SmartEnums\EnumFactory;
+use DBorsatto\SmartEnums\EnumInterface;
+use DBorsatto\SmartEnums\Exception\SmartEnumException;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
-use Madisoft\SmartEnums\EnumFactory;
-use Madisoft\SmartEnums\EnumInterface;
-use Madisoft\SmartEnums\Exception\SmartEnumException;
 use function is_string;
 
 abstract class AbstractEnumType extends Type

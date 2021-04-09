@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Madisoft\SmartEnums\Tests\Test\Bridge\Doctrine\Type;
+namespace DBorsatto\SmartEnums\Tests\Test\Bridge\Doctrine\Type;
 
+use DBorsatto\SmartEnums\Tests\Stub\DoctrineEnumType;
+use DBorsatto\SmartEnums\Tests\Stub\Enum;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
-use Madisoft\SmartEnums\Tests\Stub\DoctrineEnumType;
-use Madisoft\SmartEnums\Tests\Stub\Enum;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use stdClass;

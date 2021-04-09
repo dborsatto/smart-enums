@@ -1,17 +1,17 @@
 # Smart Enums - A dumb way to use enums in PHP
 
-[![Packagist](https://img.shields.io/packagist/v/madisoft/smart-enums.svg)](https://packagist.org/packages/madisoft/smart-enums)
-[![PHP version](https://img.shields.io/packagist/php-v/madisoft/smart-enums.svg)](https://packagist.org/packages/madisoft/smart-enums)
-[![Packagist](https://img.shields.io/github/license/madisoft/smart-enums.php.svg)](https://packagist.org/packages/madisoft/smart-enums)
+[![Packagist](https://img.shields.io/packagist/v/dborsatto/smart-enums.svg)](https://packagist.org/packages/dborsatto/smart-enums)
+[![PHP version](https://img.shields.io/packagist/php-v/dborsatto/smart-enums.svg)](https://packagist.org/packages/dborsatto/smart-enums)
+[![Packagist](https://img.shields.io/github/license/dborsatto/smart-enums.php.svg)](https://packagist.org/packages/dborsatto/smart-enums)
 
-`madisoft/smart-enums` is a PHP library that allows you to use enums in PHP without having to wait for version 8.1 It provides integration with Doctrine, so you can use enum objects in your entities, and with Symfony forms.
+`dborsatto/smart-enums` is a PHP library that allows you to use enums in PHP without having to wait for version 8.1 It provides integration with Doctrine, so you can use enum objects in your entities, and with Symfony forms.
 
 ## Installation
 
 As with any Composer package, run the CLI command to require the library in your application:
 
 ```bash
-composer require madisoft/smart-enums
+composer require dborsatto/smart-enums
 ```
 
 ## Getting started
@@ -25,7 +25,7 @@ This library is built around the concept that every possibile value for an enum 
 At the core of this library, there are an interface and an abstract class which implements this interface. Your job is to extend the abstract class and implement the only method it requires you to create. Let's have an example using the order status from earlier.
 
 ```php
-class OrderStatus extends \Madisoft\SmartEnums\AbstractEnum
+class OrderStatus extends \DBorsatto\SmartEnums\AbstractEnum
 {
     // First is a list of all possible values, defined as constants
     private const STATUS_OPEN = 'open';
@@ -179,7 +179,7 @@ In order to ease this integration within entities, we created a bridge with Doct
 There are two steps required for you to use enums with Doctrine: create a custom type, and tell Doctrine about it. The first step is where this library helps you:
 
 ```php
-class OrderStatusType extends \Madisoft\SmartEnums\Bridge\Doctrine\Type\AbstractEnumType
+class OrderStatusType extends \DBorsatto\SmartEnums\Bridge\Doctrine\Type\AbstractEnumType
 {
     public const NAME = 'order_status_type';
 
@@ -221,7 +221,7 @@ As we already mentioned, we use Symfony. This meant that we had to find a way to
 
 ```php
 
-use Madisoft\SmartEnums\Bridge\Symfony\Form\Type\EnumType;
+use DBorsatto\SmartEnums\Bridge\Symfony\Form\Type\EnumType;
 
 class OrderType extends \Symfony\Component\Form\AbstractType
 {
@@ -247,7 +247,7 @@ This library ships with a couple of utility classes that you probably will not n
 ```php
 // EnumFactory acts as a wrapper for when you only have the enum class available,
 // but you need guarantees about it being a valid enum
-$factory = new \Madisoft\SmartEnums\EnumFactory(OrderStatus::class);
+$factory = new \DBorsatto\SmartEnums\EnumFactory(OrderStatus::class);
 // At this point, all methods just forward to the actual enum methods
 $factory->fromValue('...');
 $factory->fromValues([...]);
@@ -256,7 +256,7 @@ $factory->all();
 // Sometimes you just need to get the enum value and description as an key => value array
 // Because this is usually a formatting problem, instead of breaking encapsulation
 // and making the enum constant public, use this formatter
-$formatter = new \Madisoft\SmartEnums\EnumFormatter(OrderStatus::class);
+$formatter = new \DBorsatto\SmartEnums\EnumFormatter(OrderStatus::class);
 
 // These methods both return array<string, string> values
 $formatter->toKeyValueList();

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Madisoft\SmartEnums\Tests\Test;
+namespace DBorsatto\SmartEnums\Tests\Test;
 
-use Madisoft\SmartEnums\Exception\SmartEnumException;
-use Madisoft\SmartEnums\Tests\Stub\ConcreteEnum;
+use DBorsatto\SmartEnums\Exception\SmartEnumException;
+use DBorsatto\SmartEnums\Tests\Stub\ConcreteEnum;
 use PHPUnit\Framework\TestCase;
 
 class EnumTest extends TestCase

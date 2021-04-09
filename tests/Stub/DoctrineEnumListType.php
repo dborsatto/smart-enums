@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Madisoft\SmartEnums\Tests\Stub;
+namespace DBorsatto\SmartEnums\Tests\Stub;
 
-use Madisoft\SmartEnums\Bridge\Doctrine\Type\AbstractEnumListType;
+use DBorsatto\SmartEnums\Bridge\Doctrine\Type\AbstractEnumListType;
 
 class DoctrineEnumListType extends AbstractEnumListType
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Madisoft\SmartEnums\Bridge\Symfony\Form\Type;
+namespace DBorsatto\SmartEnums\Bridge\Symfony\Form\Type;
 
-use Madisoft\SmartEnums\Bridge\Symfony\Form\Transformer\EnumToStringTransformer;
-use Madisoft\SmartEnums\EnumFormatter;
-use Madisoft\SmartEnums\EnumInterface;
+use DBorsatto\SmartEnums\Bridge\Symfony\Form\Transformer\EnumToStringTransformer;
+use DBorsatto\SmartEnums\EnumFormatter;
+use DBorsatto\SmartEnums\EnumInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;

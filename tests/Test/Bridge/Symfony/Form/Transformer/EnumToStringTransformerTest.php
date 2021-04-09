@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Madisoft\SmartEnums\Tests\Test\Bridge\Symfony\Form\Transformer;
+namespace DBorsatto\SmartEnums\Tests\Test\Bridge\Symfony\Form\Transformer;
 
-use Madisoft\SmartEnums\Bridge\Symfony\Form\Transformer\EnumToStringTransformer;
-use Madisoft\SmartEnums\Tests\Stub\Enum;
+use DBorsatto\SmartEnums\Bridge\Symfony\Form\Transformer\EnumToStringTransformer;
+use DBorsatto\SmartEnums\Tests\Stub\Enum;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Symfony\Component\Form\Exception\TransformationFailedException;
