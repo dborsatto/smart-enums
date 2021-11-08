@@ -25,8 +25,8 @@ class EnumToStringTransformerTest extends TestCase
     public function testTransforms(): void
     {
         $this->assertNull($this->transformer->transform(null));
-        $this->assertSame('value1', $this->transformer->transform(Enum::fromValue('value1')));
-        $this->assertSame(['value1'], $this->transformer->transform([Enum::fromValue('value1')]));
+        $this->assertSame(Enum::VALID_VALUE, $this->transformer->transform(Enum::fromValue(Enum::VALID_VALUE)));
+        $this->assertSame([Enum::VALID_VALUE], $this->transformer->transform([Enum::fromValue(Enum::VALID_VALUE)]));
     }
 
     public function testThrowsAnExceptionDuringTransformIfValueIsNotAnArrayOfEnums(): void
@@ -46,8 +46,8 @@ class EnumToStringTransformerTest extends TestCase
     public function testReverseTransforms(): void
     {
         $this->assertNull($this->transformer->reverseTransform(null));
-        $this->assertEquals(Enum::fromValue('value1'), $this->transformer->reverseTransform('value1'));
-        $this->assertEquals([Enum::fromValue('value1')], $this->transformer->reverseTransform(['value1']));
+        $this->assertEquals(Enum::fromValue(Enum::VALID_VALUE), $this->transformer->reverseTransform(Enum::VALID_VALUE));
+        $this->assertEquals([Enum::fromValue(Enum::VALID_VALUE)], $this->transformer->reverseTransform([Enum::VALID_VALUE]));
     }
 
     public function testThrowsAnExceptionDuringReverseTransformingConvertingToPHPValueIfErrorOccursDuringEnumCreation(): void
@@ -56,7 +56,7 @@ class EnumToStringTransformerTest extends TestCase
 
         $transformer = new EnumToStringTransformer(stdClass::class);
 
-        $transformer->reverseTransform('value1');
+        $transformer->reverseTransform(Enum::VALID_VALUE);
     }
 
     public function testThrowsAnExceptionDuringReverseTransformIfValueIsNotAnArrayOfStrings(): void

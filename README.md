@@ -240,6 +240,20 @@ class OrderType extends \Symfony\Component\Form\AbstractType
 
 This will give you a `ChoiceType` input will all available options. If you need to restrict the selection of possible choices, you can pass the `choices` value to the configuration array with a list of available objects for the user to choose.
 
+### Integration with Symfony validator
+
+This library ships with a constraint you can use with Symfony's validator. It requires the `enumClass` parameter, and optionally an error `message`.
+
+```php
+
+/** @var \Symfony\Component\Validator\Validator\ValidatorInterface $validator */
+$violations = $validator->validate($value, [
+    new \DBorsatto\SmartEnums\Bridge\Symfony\Validator\EnumConstraint(['enumClass' => Enum::class]),
+]);
+```
+
+The constraint works just like any other Symfony constraint, which means you can also use it as an annotation.
+
 ### Utilities
 
 This library ships with a couple of utility classes that you probably will not need in everyday use, but are still available for you.

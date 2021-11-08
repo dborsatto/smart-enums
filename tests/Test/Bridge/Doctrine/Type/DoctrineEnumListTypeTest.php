@@ -47,8 +47,8 @@ class DoctrineEnumListTypeTest extends TestCase
         $this->assertSame([], $this->type->convertToPHPValue(null, $this->platform));
         $this->assertSame([], $this->type->convertToPHPValue('', $this->platform));
         $this->assertEquals(
-            Enum::fromValues(['value1']),
-            $this->type->convertToPHPValue(serialize(['value1']), $this->platform)
+            Enum::fromValues([Enum::VALID_VALUE]),
+            $this->type->convertToPHPValue(serialize([Enum::VALID_VALUE]), $this->platform)
         );
     }
 

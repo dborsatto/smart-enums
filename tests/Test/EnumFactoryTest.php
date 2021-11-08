@@ -23,8 +23,8 @@ class EnumFactoryTest extends TestCase
     {
         $factory = new EnumFactory(Enum::class);
 
-        $this->assertEquals($factory->fromValue('value1'), Enum::fromValue('value1'));
-        $this->assertEquals($factory->fromValues(['value1']), Enum::fromValues(['value1']));
+        $this->assertEquals($factory->fromValue(Enum::VALID_VALUE), Enum::fromValue(Enum::VALID_VALUE));
+        $this->assertEquals($factory->fromValues([Enum::VALID_VALUE]), Enum::fromValues([Enum::VALID_VALUE]));
         $this->assertEquals($factory->all(), Enum::all());
     }
 

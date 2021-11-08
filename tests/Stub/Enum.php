@@ -12,7 +12,9 @@ use function array_map;
 final class Enum implements EnumInterface
 {
     public const UNSUPPORTED_VALUE = 'unsupported_value';
-    public const VALUES = ['value1' => 'description1', 'value2' => 'description2'];
+    public const VALID_VALUE = 'value1';
+    public const VALUES = [self::VALID_VALUE => 'description1', 'value2' => 'description2'];
+
     /**
      * @var string
      */
