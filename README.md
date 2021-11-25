@@ -283,7 +283,7 @@ Because two enums with the same value are conceptually the same, we built `Abstr
 
 For this to work, you need to remember two things:
 - For technical reasons, this can't be enforced at an interface level. This is why we recommend you always extend `AbstractEnum` and never implement `EnumInterface` directly.
-- Inside an enum, you must **never** modify `$this->value`. State transitions must always return a new enum and the must never update the current enum. Unfortunately PHP does not support read only properties and as we said, we don't like magic solutions that would let use work around this, so we trust users to be smart and not mess this up.
+- Inside an enum, you must **never** modify `$this->value`. State transitions must always return a new enum and they must never update the current enum. Unfortunately PHP before version 8.1 does not support read only properties and as we said, we don't like magic solutions that would let us work around this, so we trust users to be smart and not mess this up.
 
 ## License
 
