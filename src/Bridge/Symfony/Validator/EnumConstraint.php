@@ -9,17 +9,14 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * @Annotation
+ * @psalm-suppress PropertyNotSetInConstructor
  */
 class EnumConstraint extends Constraint
 {
-    /**
-     * @var string
-     */
-    public $message = 'The string {{ value }} is not a valid value of enum {{ enumClass }}';
+    public string $message = 'The string {{ value }} is not a valid value of enum {{ enumClass }}';
 
     /**
      * @var class-string<EnumInterface>
-     * @psalm-suppress PropertyNotSetInConstructor
      */
     public $enumClass;
 

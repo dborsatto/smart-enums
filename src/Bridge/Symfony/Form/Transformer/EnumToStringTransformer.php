@@ -15,14 +15,12 @@ use function is_string;
 class EnumToStringTransformer implements DataTransformerInterface
 {
     /**
-     * @var string
-     * @psalm-var class-string<EnumInterface>
+     * @var class-string<EnumInterface>
      */
-    private $enumClass;
+    private string $enumClass;
 
     /**
-     * @param string $enumClass
-     * @psalm-param class-string<EnumInterface> $enumClass
+     * @param class-string<EnumInterface> $enumClass
      */
     public function __construct(string $enumClass)
     {
@@ -38,7 +36,7 @@ class EnumToStringTransformer implements DataTransformerInterface
      */
     public function transform($value)
     {
-        if (null === $value) {
+        if ($value === null) {
             return null;
         }
 
@@ -71,7 +69,7 @@ class EnumToStringTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
-        if (null === $value) {
+        if ($value === null) {
             return null;
         }
 

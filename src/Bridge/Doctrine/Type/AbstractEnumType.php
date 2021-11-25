@@ -40,7 +40,7 @@ abstract class AbstractEnumType extends Type
      */
     public function convertToPHPValue($value, AbstractPlatform $platform): ?EnumInterface
     {
-        if (null === $value) {
+        if ($value === null) {
             return null;
         }
 
@@ -67,7 +67,7 @@ abstract class AbstractEnumType extends Type
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
-        if (null === $value) {
+        if ($value === null) {
             return null;
         }
 
@@ -79,8 +79,7 @@ abstract class AbstractEnumType extends Type
     }
 
     /**
-     * @return string
-     * @psalm-return class-string<EnumInterface>
+     * @return class-string<EnumInterface>
      */
     abstract protected function getEnumClass(): string;
 }

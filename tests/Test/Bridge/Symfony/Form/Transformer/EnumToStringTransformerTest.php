@@ -12,10 +12,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class EnumToStringTransformerTest extends TestCase
 {
-    /**
-     * @var EnumToStringTransformer
-     */
-    private $transformer;
+    private EnumToStringTransformer $transformer;
 
     protected function setUp(): void
     {

@@ -14,10 +14,7 @@ use stdClass;
 
 class DoctrineEnumTypeTest extends TestCase
 {
-    /**
-     * @var DoctrineEnumType
-     */
-    private $type;
+    private DoctrineEnumType $type;
 
     /**
      * @var AbstractPlatform|MockObject
@@ -39,7 +36,7 @@ class DoctrineEnumTypeTest extends TestCase
             [['length' => 10], 'correct-configuration-10'],
         ];
         $this->platform->method('getVarcharTypeDeclarationSQL')
-            ->will($this->returnValueMap($valueMap));
+            ->willReturnMap($valueMap);
 
         $column = [];
         $this->assertSame('correct-configuration-default', $this->type->getSQLDeclaration($column, $this->platform));

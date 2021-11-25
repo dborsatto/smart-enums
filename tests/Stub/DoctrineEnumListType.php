@@ -8,10 +8,7 @@ use DBorsatto\SmartEnums\Bridge\Doctrine\Type\AbstractEnumListType;
 
 class DoctrineEnumListType extends AbstractEnumListType
 {
-    /**
-     * @var string
-     */
-    private $enumClass = '';
+    private string $enumClass = '';
 
     public static function createForEnum(string $enumClass): self
     {

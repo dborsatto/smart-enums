@@ -11,14 +11,10 @@ use function array_map;
 abstract class AbstractEnum implements EnumInterface
 {
     /**
-     * @var string
-     */
-    protected $value;
-
-    /**
      * @var array<string, static>
      */
-    private static $instances = [];
+    private static array $instances = [];
+    protected string $value;
 
     final private function __construct(string $value)
     {
