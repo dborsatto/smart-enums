@@ -18,7 +18,7 @@ class EnumType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        /** @psalm-var class-string<EnumInterface> $enumClass */
+        /** @var class-string<EnumInterface> $enumClass */
         $enumClass = $options['enum_class'];
 
         $builder->addModelTransformer(new EnumToStringTransformer($enumClass));
@@ -33,7 +33,7 @@ class EnumType extends AbstractType
         });
 
         $resolver->setDefault('choices', function (Options $options): array {
-            /** @psalm-var class-string<EnumInterface> $enumClass */
+            /** @var class-string<EnumInterface> $enumClass */
             $enumClass = $options['enum_class'];
             $formatter = new EnumFormatter($enumClass);
 

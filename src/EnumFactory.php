@@ -10,14 +10,12 @@ use function is_subclass_of;
 class EnumFactory
 {
     /**
-     * @var string
-     * @psalm-var class-string<EnumInterface> $enumClass
+     * @var class-string<EnumInterface>
      */
-    private $enumClass;
+    private string $enumClass;
 
     /**
-     * @param string $enumClass
-     * @psalm-param class-string<EnumInterface> $enumClass
+     * @param class-string<EnumInterface> $enumClass
      *
      * @throws SmartEnumException
      */

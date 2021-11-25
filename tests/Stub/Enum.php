@@ -15,10 +15,7 @@ final class Enum implements EnumInterface
     public const VALID_VALUE = 'value1';
     public const VALUES = [self::VALID_VALUE => 'description1', 'value2' => 'description2'];
 
-    /**
-     * @var string
-     */
-    private $value;
+    private string $value;
 
     private function __construct(string $value)
     {
@@ -27,7 +24,7 @@ final class Enum implements EnumInterface
 
     public static function fromValue(string $value): self
     {
-        if (self::UNSUPPORTED_VALUE === $value) {
+        if ($value === self::UNSUPPORTED_VALUE) {
             throw SmartEnumException::invalidValue($value, self::class);
         }
 

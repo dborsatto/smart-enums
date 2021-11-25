@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace DBorsatto\SmartEnums\Tests\Stub;
 
-use DBorsatto\SmartEnums\Bridge\Doctrine\Type\AbstractEnumType;
+use DBorsatto\SmartEnums\Bridge\Doctrine\Type\AbstractEnumSimpleListType;
 
-class DoctrineEnumType extends AbstractEnumType
+class DoctrineEnumSimpleListType extends AbstractEnumSimpleListType
 {
     private string $enumClass = '';
 
@@ -25,6 +25,6 @@ class DoctrineEnumType extends AbstractEnumType
 
     public function getName(): string
     {
-        return 'enum';
+        return 'enum_list';
     }
 }

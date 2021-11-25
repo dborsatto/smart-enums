@@ -16,9 +16,8 @@ class SmartEnumException extends Exception
     }
 
     /**
-     * @param string $value
-     * @param string $class
-     * @psalm-param class-string $class
+     * @param string       $value
+     * @param class-string $class
      *
      * @return static
      */

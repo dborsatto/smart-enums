@@ -9,14 +9,10 @@ use function array_flip;
 
 class EnumFormatter
 {
-    /**
-     * @var EnumFactory
-     */
-    private $factory;
+    private EnumFactory $factory;
 
     /**
-     * @param string $enumClass
-     * @psalm-param class-string<EnumInterface> $enumClass
+     * @param class-string<EnumInterface> $enumClass
      *
      * @throws SmartEnumException
      */
