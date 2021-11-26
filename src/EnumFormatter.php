@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DBorsatto\SmartEnums;
 
-use DBorsatto\SmartEnums\Exception\SmartEnumException;
+use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
 use function array_flip;
 
 class EnumFormatter
@@ -14,7 +14,7 @@ class EnumFormatter
     /**
      * @param class-string<EnumInterface> $enumClass
      *
-     * @throws SmartEnumException
+     * @throws SmartEnumExceptionInterface
      */
     public function __construct(string $enumClass)
     {

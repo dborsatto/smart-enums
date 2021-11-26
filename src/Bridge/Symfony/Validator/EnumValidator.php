@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DBorsatto\SmartEnums\Bridge\Symfony\Validator;
 
 use DBorsatto\SmartEnums\EnumFactory;
-use DBorsatto\SmartEnums\Exception\SmartEnumException;
+use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
@@ -27,13 +27,13 @@ class EnumValidator extends ConstraintValidator
 
         try {
             $factory = new EnumFactory($constraint->enumClass);
-        } catch (SmartEnumException $exception) {
+        } catch (SmartEnumExceptionInterface $exception) {
             throw new ConstraintDefinitionException('Enum class property of constraint is not valid');
         }
 
         try {
             $factory->fromValue($value);
-        } catch (SmartEnumException $exception) {
+        } catch (SmartEnumExceptionInterface $exception) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ value }}', $value)
                 ->setParameter('{{ enumClass }}', $constraint->enumClass)

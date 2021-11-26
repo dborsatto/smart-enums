@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1
+
+* [**Added**] New `SmartEnumExceptionInterface` allows you to override the default `fromValue` and `fromValues` methods and throw a custom exception, as long as it implements this interface.
+
 ## 2.0
 
 * [**Added**] New `AbstractEnumJsonListType` and `AbstractEnumSimpleListType` Doctrine types to store data as JSON or comma-separated strings

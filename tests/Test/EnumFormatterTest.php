@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DBorsatto\SmartEnums\Tests\Test;
 
 use DBorsatto\SmartEnums\EnumFormatter;
-use DBorsatto\SmartEnums\Exception\SmartEnumException;
+use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
 use DBorsatto\SmartEnums\Tests\Stub\Enum;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -15,7 +15,7 @@ class EnumFormatterTest extends TestCase
 {
     public function testThrowsAnExceptionIfEnumClassIsNotValid(): void
     {
-        $this->expectException(SmartEnumException::class);
+        $this->expectException(SmartEnumExceptionInterface::class);
 
         new EnumFormatter(stdClass::class);
     }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DBorsatto\SmartEnums\Tests\Test;
 
 use DBorsatto\SmartEnums\EnumFactory;
-use DBorsatto\SmartEnums\Exception\SmartEnumException;
+use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
 use DBorsatto\SmartEnums\Tests\Stub\Enum;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -14,7 +14,7 @@ class EnumFactoryTest extends TestCase
 {
     public function testThrowsAnExceptionIfEnumClassIsNotValid(): void
     {
-        $this->expectException(SmartEnumException::class);
+        $this->expectException(SmartEnumExceptionInterface::class);
 
         new EnumFactory(stdClass::class);
     }
@@ -30,7 +30,7 @@ class EnumFactoryTest extends TestCase
 
     public function testThrowsAnExceptionWhenCreatingEnumFromUnsupportedValue(): void
     {
-        $this->expectException(SmartEnumException::class);
+        $this->expectException(SmartEnumExceptionInterface::class);
 
         $factory = new EnumFactory(Enum::class);
         $factory->fromValue(Enum::UNSUPPORTED_VALUE);
@@ -38,7 +38,7 @@ class EnumFactoryTest extends TestCase
 
     public function testThrowsAnExceptionWhenCreatingEnumFromUnsupportedValues(): void
     {
-        $this->expectException(SmartEnumException::class);
+        $this->expectException(SmartEnumExceptionInterface::class);
 
         $factory = new EnumFactory(Enum::class);
         $factory->fromValues([Enum::UNSUPPORTED_VALUE]);

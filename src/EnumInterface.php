@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace DBorsatto\SmartEnums;
 
-use DBorsatto\SmartEnums\Exception\SmartEnumException;
+use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
 
 interface EnumInterface
 {
     /**
      * @param string $value
      *
-     * @throws SmartEnumException
+     * @throws SmartEnumExceptionInterface
      *
      * @return static
      */
@@ -20,7 +20,7 @@ interface EnumInterface
     /**
      * @param list<string> $values
      *
-     * @throws SmartEnumException
+     * @throws SmartEnumExceptionInterface
      *
      * @return list<static>
      */

@@ -6,7 +6,7 @@ namespace DBorsatto\SmartEnums\Bridge\Doctrine\Type;
 
 use DBorsatto\SmartEnums\EnumFactory;
 use DBorsatto\SmartEnums\EnumInterface;
-use DBorsatto\SmartEnums\Exception\SmartEnumException;
+use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
@@ -56,7 +56,7 @@ abstract class AbstractEnumGenericArrayType extends Type
             }
 
             return $enums;
-        } catch (SmartEnumException $exception) {
+        } catch (SmartEnumExceptionInterface $exception) {
             throw ConversionException::conversionFailedInvalidType($value, $this->getName(), ['string']);
         }
     }

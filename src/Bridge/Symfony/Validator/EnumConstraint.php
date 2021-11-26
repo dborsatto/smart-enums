@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class EnumConstraint extends Constraint
 {
-    public string $message = 'The string {{ value }} is not a valid value of enum {{ enumClass }}';
+    public string $message = 'The string "{{ value }}" is not a valid value of enum "{{ enumClass }}"';
 
     /**
      * @var class-string<EnumInterface>
