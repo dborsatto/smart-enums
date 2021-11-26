@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace DBorsatto\SmartEnums\Tests\Stub;
 
 use DBorsatto\SmartEnums\EnumInterface;
-use DBorsatto\SmartEnums\Exception\SmartEnumException;
 use function array_keys;
 use function array_map;
 
@@ -25,7 +24,7 @@ final class Enum implements EnumInterface
     public static function fromValue(string $value): self
     {
         if ($value === self::UNSUPPORTED_VALUE) {
-            throw SmartEnumException::invalidValue($value, self::class);
+            throw new CustomException('Invalid value');
         }
 
         return new self($value);

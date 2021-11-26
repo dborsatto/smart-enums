@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace DBorsatto\SmartEnums;
 
 use DBorsatto\SmartEnums\Exception\SmartEnumException;
+use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
 use function is_subclass_of;
 
 class EnumFactory
@@ -17,7 +18,7 @@ class EnumFactory
     /**
      * @param class-string<EnumInterface> $enumClass
      *
-     * @throws SmartEnumException
+     * @throws SmartEnumExceptionInterface
      */
     public function __construct(string $enumClass)
     {
@@ -31,7 +32,7 @@ class EnumFactory
     /**
      * @param string $value
      *
-     * @throws SmartEnumException
+     * @throws SmartEnumExceptionInterface
      *
      * @return EnumInterface
      */
@@ -43,7 +44,7 @@ class EnumFactory
     /**
      * @param list<string> $values
      *
-     * @throws SmartEnumException
+     * @throws SmartEnumExceptionInterface
      *
      * @return list<EnumInterface>
      */

@@ -8,7 +8,7 @@ use Exception;
 use Throwable;
 use function sprintf;
 
-class SmartEnumException extends Exception
+class SmartEnumException extends Exception implements SmartEnumExceptionInterface
 {
     final public function __construct(string $message, int $code = 0, Throwable $previous = null)
     {

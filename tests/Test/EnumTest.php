@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DBorsatto\SmartEnums\Tests\Test;
 
-use DBorsatto\SmartEnums\Exception\SmartEnumException;
+use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
 use DBorsatto\SmartEnums\Tests\Stub\ConcreteEnum;
 use PHPUnit\Framework\TestCase;
 
@@ -28,7 +28,7 @@ class EnumTest extends TestCase
 
     public function testThrowsAnExceptionIfValueIsNotValid(): void
     {
-        $this->expectException(SmartEnumException::class);
+        $this->expectException(SmartEnumExceptionInterface::class);
 
         ConcreteEnum::fromValue('invalid');
     }
@@ -42,7 +42,7 @@ class EnumTest extends TestCase
 
     public function testThrowsAnExceptionIfValuesAreNotValid(): void
     {
-        $this->expectException(SmartEnumException::class);
+        $this->expectException(SmartEnumExceptionInterface::class);
 
         ConcreteEnum::fromValues(['invalid']);
     }
