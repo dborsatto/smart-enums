@@ -40,7 +40,7 @@ class DoctrineEnumJsonListTypeTest extends TestCase
 
     public function testConvertsToPHPValue(): void
     {
-        $this->assertSame([], $this->type->convertToPHPValue(null, $this->platform));
+        $this->assertNull($this->type->convertToPHPValue(null, $this->platform));
         $this->assertSame([], $this->type->convertToPHPValue('', $this->platform));
         $this->assertEquals(
             Enum::fromValues([Enum::VALID_VALUE]),
@@ -87,7 +87,7 @@ class DoctrineEnumJsonListTypeTest extends TestCase
 
     public function testConvertsToDatabaseValue(): void
     {
-        $this->assertJsonStringEqualsJsonString('{"values":[]}', $this->type->convertToDatabaseValue(null, $this->platform));
+        $this->assertNull($this->type->convertToDatabaseValue(null, $this->platform));
         $this->assertJsonStringEqualsJsonString('{"values":[]}', $this->type->convertToDatabaseValue([], $this->platform));
         $this->assertJsonStringEqualsJsonString(
             '{"values":["value1","value2"]}',
