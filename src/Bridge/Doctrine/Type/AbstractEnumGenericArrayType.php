@@ -14,6 +14,9 @@ use function gettype;
 use function is_array;
 use function is_string;
 
+/**
+ * @internal
+ */
 abstract class AbstractEnumGenericArrayType extends Type
 {
     final public function requiresSQLCommentHint(AbstractPlatform $platform): bool
@@ -27,11 +30,15 @@ abstract class AbstractEnumGenericArrayType extends Type
      *
      * @throws ConversionException
      *
-     * @return list<EnumInterface>
+     * @return list<EnumInterface>|null
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform): array
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?array
     {
-        if ($value === null || $value === '') {
+        if ($value === null) {
+            return null;
+        }
+
+        if ($value === '') {
             return [];
         }
 
@@ -67,12 +74,12 @@ abstract class AbstractEnumGenericArrayType extends Type
      *
      * @throws ConversionException
      *
-     * @return string
+     * @return string|null
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         if ($value === null) {
-            $value = [];
+            return null;
         }
 
         if (!is_array($value)) {
