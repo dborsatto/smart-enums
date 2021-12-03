@@ -21,6 +21,10 @@ class EnumValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, EnumConstraint::class);
         }
 
+        if ($value === null) {
+            return;
+        }
+
         if (!is_string($value)) {
             throw new UnexpectedValueException($value, 'string');
         }

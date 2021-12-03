@@ -24,6 +24,10 @@ class EnumListValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, EnumListConstraint::class);
         }
 
+        if ($value === null) {
+            return;
+        }
+
         if (!is_array($value)) {
             throw new UnexpectedValueException($value, 'string[]');
         }
