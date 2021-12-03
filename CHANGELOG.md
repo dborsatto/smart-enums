@@ -1,9 +1,13 @@
 # Changelog
 
+## 2.2.2
+
+* [**Fixed**] `null` is now allowed in validators, and it must be explicitly filter using the `NotBlank` validator.
+
 ## 2.2.1
 
 * [**Fixed**] `null` is now maintained when converting a list to database value, instead of creating an empty array.
-* 
+
 ## 2.2
 
 * [**Added**] New `EnumListContraint` and `EnumListValidator` to work with Symfony's validator.
