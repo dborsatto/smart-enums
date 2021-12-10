@@ -12,7 +12,7 @@ $finder = PhpCsFixer\Finder::create()
 $config = new PhpCsFixer\Config();
 
 return $config->setFinder($finder)
-    ->setCacheFile(__DIR__.'/cache/php-cs-fixer.cache')
+    ->setUsingCache(false)
     ->setRiskyAllowed(true)
     ->setRules([
         '@PSR12' => true,
