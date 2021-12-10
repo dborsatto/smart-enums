@@ -1,4 +1,4 @@
-name: PHP Composer
+name: Build
 
 on:
   push:
@@ -7,31 +7,66 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+    static-analysis:
+        runs-on: ubuntu-20.04
+        name: Static analysis
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: Psalm
+              uses: docker://vimeo/psalm-github-actions
+              with:
+                  composer_require_dev: true
 
-    runs-on: ubuntu-latest
+    code-style:
+        runs-on: ubuntu-20.04
+        name: Code style
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: PHP-CS-Fixer
+              uses: docker://oskarstark/php-cs-fixer-ga
 
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Install PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '7.4'
-
-      - name: Validate composer data
-        run: composer validate
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
-
-      - name: Run test suite
-        run: composer run-script test
-
-      - name: Run static analysis
-        run: composer run-script static-analysis
-
-      - name: Run coding standard detection
-        run: composer run-script cs-fixer-validate
+    tests:
+        runs-on: ubuntu-20.04
+        strategy:
+            max-parallel: 1
+            matrix:
+                php:
+                    - '7.4'
+                    - '8.0'
+                    - '8.1'
+                include:
+                    - description: 'lowest'
+                      php: '7.4'
+                      composer_option: '--prefer-lowest'
+                    - description: '8.0'
+                      php: '8.0'
+                    - description: 'latest'
+                      php: '8.1'
+        name: Tests PHP ${{ matrix.php }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: Cache
+              uses: actions/cache@v2
+              with:
+                  path: ~/.composer/cache/files
+                  key: ${{ matrix.php }}-${{ matrix.composer_option }}
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+            - run: composer update --no-interaction --no-progress --ansi ${{ matrix.composer_option }}
+            - run: vendor/bin/phpunit --coverage-clover=clover.xml
+            - name: Code Climate Test Reporter
+              uses: aktions/codeclimate-test-reporter@v1
+              if: ${{ github.event_name != 'pull_request' }}
+              with:
+                  codeclimate-test-reporter-id: ${{ secrets.CC_TEST_REPORTER_ID }}
+                  command: after-build --coverage-input-type clover
+            - uses: codecov/codecov-action@v1
+              with:
+                  files: ./clover.xml
 
 
