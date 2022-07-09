@@ -18,6 +18,10 @@ class SymbolSeparatedValuesEnumListConverter extends AbstractEnumListConverter
 
     protected function convertToArray(string $value): array
     {
+        if ($value === '') {
+            return [];
+        }
+
         return explode($this->symbol, $value);
     }
 
