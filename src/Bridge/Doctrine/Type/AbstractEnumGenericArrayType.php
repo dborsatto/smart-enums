@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace DBorsatto\SmartEnums\Bridge\Doctrine\Type;
 
-use DBorsatto\SmartEnums\EnumFactory;
 use DBorsatto\SmartEnums\EnumInterface;
+use DBorsatto\SmartEnums\EnumListConverter\EnumListConverterInterface;
 use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
@@ -25,8 +25,7 @@ abstract class AbstractEnumGenericArrayType extends Type
     }
 
     /**
-     * @param string|mixed     $value
-     * @param AbstractPlatform $platform
+     * @param mixed $value
      *
      * @throws ConversionException
      *
@@ -38,43 +37,30 @@ abstract class AbstractEnumGenericArrayType extends Type
             return null;
         }
 
-        if ($value === '') {
-            return [];
-        }
-
         if (!is_string($value)) {
             throw ConversionException::conversionFailed(gettype($value), $this->getName());
         }
 
+        if ($value === '') {
+            return [];
+        }
+
+        $enumListConverter = $this->getEnumListConverter();
+
         try {
-            $factory = new EnumFactory($this->getEnumClass());
-
-            $values = $this->convertDatabaseStringToEnumValues($value);
-            $enums = [];
-            foreach ($values as $arrayValue) {
-                if (!is_string($arrayValue)) {
-                    throw ConversionException::conversionFailedUnserialization(
-                        $this->getName(),
-                        'Invalid array value'
-                    );
-                }
-
-                $enums[] = $factory->fromValue($arrayValue);
-            }
-
-            return $enums;
+            return $enumListConverter->convertFromStringToEnumList($this->getEnumClass(), $value);
         } catch (SmartEnumExceptionInterface $exception) {
-            throw ConversionException::conversionFailedInvalidType($value, $this->getName(), ['string']);
+            throw ConversionException::conversionFailedUnserialization(
+                $this->getName(),
+                'Invalid array value'
+            );
         }
     }
 
     /**
      * @param list<EnumInterface>|mixed $value
-     * @param AbstractPlatform          $platform
      *
      * @throws ConversionException
-     *
-     * @return string|null
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
@@ -90,7 +76,7 @@ abstract class AbstractEnumGenericArrayType extends Type
             );
         }
 
-        $enumValues = [];
+        $enums = [];
         foreach ($value as $enum) {
             if (!$enum instanceof EnumInterface) {
                 throw ConversionException::conversionFailedInvalidType(
@@ -100,29 +86,22 @@ abstract class AbstractEnumGenericArrayType extends Type
                 );
             }
 
-            $enumValues[] = $enum->getValue();
+            $enums[] = $enum;
         }
 
-        return $this->convertEnumValuesToDatabaseString($enumValues);
+        $enumListConverter = $this->getEnumListConverter();
+
+        try {
+            return $enumListConverter->convertFromEnumListToString($enums);
+        } catch (SmartEnumExceptionInterface $exception) {
+            throw ConversionException::conversionFailedUnserialization(
+                $this->getName(),
+                'Invalid array value'
+            );
+        }
     }
 
-    /**
-     * @param string $value
-     *
-     * @throws ConversionException
-     *
-     * @return list<mixed>
-     */
-    abstract protected function convertDatabaseStringToEnumValues(string $value): array;
-
-    /**
-     * @param list<string> $values
-     *
-     * @throws ConversionException
-     *
-     * @return string
-     */
-    abstract protected function convertEnumValuesToDatabaseString(array $values): string;
+    abstract protected function getEnumListConverter(): EnumListConverterInterface;
 
     /**
      * @return class-string<EnumInterface>

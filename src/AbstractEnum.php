@@ -27,8 +27,6 @@ abstract class AbstractEnum implements EnumInterface
     }
 
     /**
-     * @param string $value
-     *
      * @return static
      */
     protected static function newInstance(string $value): self

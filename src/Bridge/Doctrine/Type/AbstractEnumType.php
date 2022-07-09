@@ -31,12 +31,7 @@ abstract class AbstractEnumType extends Type
     }
 
     /**
-     * @param mixed            $value
-     * @param AbstractPlatform $platform
-     *
      * @throws ConversionException
-     *
-     * @return EnumInterface|null
      */
     public function convertToPHPValue($value, AbstractPlatform $platform): ?EnumInterface
     {
@@ -58,12 +53,7 @@ abstract class AbstractEnumType extends Type
     }
 
     /**
-     * @param EnumInterface|mixed $value
-     * @param AbstractPlatform    $platform
-     *
      * @throws ConversionException
-     *
-     * @return string|null
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
