@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.0
+
+* [**Added**] [**BC BREAK**] Custom Doctrine types have been reworked and now they delegate the string to enum array conversion to specific services. While technically it is a BC break because some procted methods were changed, unless you were doing weird things you should be alright.
+
 ## 2.2.2
 
 * [**Fixed**] `null` is now allowed in validators, and it must be explicitly filter using the `NotBlank` validator.
