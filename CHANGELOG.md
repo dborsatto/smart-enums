@@ -1,8 +1,12 @@
 # Changelog
 
+## 3.0.1
+
+* [**Fixed**] Fixed a bug with an empty string not being handled properly during string to enum list conversion.
+
 ## 3.0.0
 
-* [**Added**] [**BC BREAK**] Custom Doctrine types have been reworked and now they delegate the string to enum array conversion to specific services. While technically it is a BC break because some procted methods were changed, unless you were doing weird things you should be alright.
+* [**Added**] [**BC BREAK**] Custom Doctrine types have been reworked and now they delegate the string to enum array conversion to specific services. While technically it is a BC break because some protected methods were changed, unless you were doing weird things you should be alright.
 
 ## 2.2.2
 

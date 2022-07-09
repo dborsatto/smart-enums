@@ -19,6 +19,15 @@ class SymbolSeparatedValuesEnumListConverterTest extends TestCase
         $this->assertSame([ConcreteEnum::value1(), ConcreteEnum::value2()], $enums);
     }
 
+    public function testConvertsEmptyStringToArray(): void
+    {
+        $converter = new SymbolSeparatedValuesEnumListConverter(',');
+
+        $enums = $converter->convertFromStringToEnumList(ConcreteEnum::class, '');
+
+        $this->assertSame([], $enums);
+    }
+
     public function testConvertsToString(): void
     {
         $converter = new SymbolSeparatedValuesEnumListConverter(',');
