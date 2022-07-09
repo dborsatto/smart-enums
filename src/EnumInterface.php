@@ -9,8 +9,6 @@ use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
 interface EnumInterface
 {
     /**
-     * @param string $value
-     *
      * @throws SmartEnumExceptionInterface
      *
      * @return static

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace DBorsatto\SmartEnums\Bridge\Doctrine\Type;
 
+use DBorsatto\SmartEnums\EnumListConverter\EnumListConverterInterface;
+use DBorsatto\SmartEnums\EnumListConverter\SymbolSeparatedValuesEnumListConverter;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use function explode;
-use function implode;
 
 abstract class AbstractEnumSimpleListType extends AbstractEnumGenericArrayType
 {
@@ -19,13 +19,8 @@ abstract class AbstractEnumSimpleListType extends AbstractEnumGenericArrayType
         return $platform->getVarcharTypeDeclarationSQL($column);
     }
 
-    protected function convertDatabaseStringToEnumValues(string $value): array
+    protected function getEnumListConverter(): EnumListConverterInterface
     {
-        return explode(',', $value);
-    }
-
-    protected function convertEnumValuesToDatabaseString(array $values): string
-    {
-        return implode(',', $values);
+        return new SymbolSeparatedValuesEnumListConverter(',');
     }
 }

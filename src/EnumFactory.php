@@ -30,11 +30,7 @@ class EnumFactory
     }
 
     /**
-     * @param string $value
-     *
      * @throws SmartEnumExceptionInterface
-     *
-     * @return EnumInterface
      */
     public function fromValue(string $value): EnumInterface
     {
