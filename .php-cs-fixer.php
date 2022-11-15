@@ -15,11 +15,12 @@ return $config->setFinder($finder)
     ->setUsingCache(false)
     ->setRiskyAllowed(true)
     ->setRules([
-        '@PSR12' => true,
+        '@PER' => true,
         '@DoctrineAnnotation' => true,
         '@PhpCsFixer' => true,
         '@Symfony' => true,
         '@PHP74Migration' => true,
+        'blank_line_between_import_groups' => false,
         'concat_space' => [
             'spacing' => 'one',
         ],
@@ -35,12 +36,15 @@ return $config->setFinder($finder)
         'is_null' => true,
         'list_syntax' => true,
         'logical_operators' => true,
+        'modernize_strpos' => true,
         'modernize_types_casting' => true,
         'multiline_whitespace_before_semicolons' => [
             'strategy' => 'no_multi_line',
         ],
         'native_constant_invocation' => true,
-        'native_function_invocation' => true,
+        'native_function_invocation' => [
+            'include' => ['@all'],
+        ],
         'no_superfluous_phpdoc_tags' => false,
         'no_unused_imports' => true,
         'no_useless_sprintf' => true,
@@ -69,6 +73,14 @@ return $config->setFinder($finder)
             'property' => 'multi',
             'method' => 'multi',
         ],
+        'phpdoc_order' => [
+            'order' => [
+                'param',
+                'throws',
+                'return',
+            ],
+        ],
+        'phpdoc_separation' => false,
         'phpdoc_to_comment' => false,
         'php_unit_construct' => true,
         'php_unit_dedicate_assert' => true,
@@ -79,6 +91,13 @@ return $config->setFinder($finder)
         'self_accessor' => true,
         'single_line_throw' => false,
         'string_length_to_empty' => true,
+        'trailing_comma_in_multiline' => [
+            'after_heredoc' => true,
+            'elements' => [
+                'arrays',
+                'arguments',
+            ],
+        ],
         'yoda_style' => [
             'equal' => false,
             'identical' => false,

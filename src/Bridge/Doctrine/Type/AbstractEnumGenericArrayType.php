@@ -52,7 +52,7 @@ abstract class AbstractEnumGenericArrayType extends Type
         } catch (SmartEnumExceptionInterface $exception) {
             throw ConversionException::conversionFailedUnserialization(
                 $this->getName(),
-                'Invalid array value'
+                'Invalid array value',
             );
         }
     }
@@ -72,7 +72,7 @@ abstract class AbstractEnumGenericArrayType extends Type
             throw ConversionException::conversionFailedInvalidType(
                 $value,
                 'string',
-                ['null', EnumInterface::class . '[]']
+                ['null', EnumInterface::class . '[]'],
             );
         }
 
@@ -82,7 +82,7 @@ abstract class AbstractEnumGenericArrayType extends Type
                 throw ConversionException::conversionFailedInvalidType(
                     $value,
                     'string',
-                    ['null', EnumInterface::class . '[]']
+                    ['null', EnumInterface::class . '[]'],
                 );
             }
 
@@ -96,7 +96,7 @@ abstract class AbstractEnumGenericArrayType extends Type
         } catch (SmartEnumExceptionInterface $exception) {
             throw ConversionException::conversionFailedUnserialization(
                 $this->getName(),
-                'Invalid array value'
+                'Invalid array value',
             );
         }
     }

@@ -49,7 +49,7 @@ class DoctrineEnumSimpleListTypeTest extends TestCase
         $this->assertSame([], $this->type->convertToPHPValue('', $this->platform));
         $this->assertEquals(
             Enum::fromValues([Enum::VALID_VALUE]),
-            $this->type->convertToPHPValue(Enum::VALID_VALUE, $this->platform)
+            $this->type->convertToPHPValue(Enum::VALID_VALUE, $this->platform),
         );
     }
 
@@ -75,7 +75,7 @@ class DoctrineEnumSimpleListTypeTest extends TestCase
         $this->assertSame('', $this->type->convertToDatabaseValue([], $this->platform));
         $this->assertEquals(
             'value1,value2',
-            $this->type->convertToDatabaseValue([Enum::fromValue('value1'), Enum::fromValue('value2')], $this->platform)
+            $this->type->convertToDatabaseValue([Enum::fromValue('value1'), Enum::fromValue('value2')], $this->platform),
         );
     }
 

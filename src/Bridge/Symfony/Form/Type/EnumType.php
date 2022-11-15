@@ -37,7 +37,7 @@ class EnumType extends AbstractType
             $enumClass = $options['enum_class'];
             $formatter = new EnumFormatter($enumClass);
 
-            return $formatter->toValueKeyList();
+            return $formatter->toDescriptionValueList();
         });
     }
 

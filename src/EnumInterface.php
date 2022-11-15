@@ -25,7 +25,7 @@ interface EnumInterface
     public static function fromValues(array $values): array;
 
     /**
-     * @return list<static>
+     * @return non-empty-list<static>
      */
     public static function all(): array;
 
