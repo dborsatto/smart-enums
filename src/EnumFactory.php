@@ -50,7 +50,7 @@ class EnumFactory
     }
 
     /**
-     * @return list<EnumInterface>
+     * @return non-empty-list<EnumInterface>
      */
     public function all(): array
     {

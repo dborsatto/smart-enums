@@ -273,8 +273,8 @@ $factory->all();
 $formatter = new \DBorsatto\SmartEnums\EnumFormatter(OrderStatus::class);
 
 // These methods both return array<string, string> values
-$formatter->toKeyValueList();
-$formatter->toValueKeyList();
+$formatter->toValueDescriptionList();
+$formatter->toDescriptionValueList();
 ```
 
 ### An important note about enum identity

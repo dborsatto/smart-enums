@@ -93,7 +93,7 @@ abstract class AbstractEnum implements EnumInterface
     }
 
     /**
-     * @return array<string, string>
+     * @return non-empty-array<string, string>
      */
     abstract protected static function getValues(): array;
 }

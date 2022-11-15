@@ -50,7 +50,7 @@ class DoctrineEnumTypeTest extends TestCase
         $this->assertNull($this->type->convertToPHPValue(null, $this->platform));
         $this->assertEquals(
             Enum::fromValue(Enum::VALID_VALUE),
-            $this->type->convertToPHPValue(Enum::VALID_VALUE, $this->platform)
+            $this->type->convertToPHPValue(Enum::VALID_VALUE, $this->platform),
         );
     }
 
@@ -75,7 +75,7 @@ class DoctrineEnumTypeTest extends TestCase
         $this->assertNull($this->type->convertToDatabaseValue(null, $this->platform));
         $this->assertEquals(
             Enum::VALID_VALUE,
-            $this->type->convertToDatabaseValue(Enum::fromValue(Enum::VALID_VALUE), $this->platform)
+            $this->type->convertToDatabaseValue(Enum::fromValue(Enum::VALID_VALUE), $this->platform),
         );
     }
 

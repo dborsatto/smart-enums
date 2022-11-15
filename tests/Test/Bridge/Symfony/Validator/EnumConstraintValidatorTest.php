@@ -40,7 +40,7 @@ class EnumConstraintValidatorTest extends TestCase
         $this->assertSame(sprintf(
             'The string "%s" is not a valid value of enum "%s"',
             Enum::UNSUPPORTED_VALUE,
-            Enum::class
+            Enum::class,
         ), $violation->getMessage());
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DBorsatto\SmartEnums;
 
 use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
-use function array_flip;
+use function array_map;
 
 class EnumFormatter
 {
@@ -22,22 +22,72 @@ class EnumFormatter
     }
 
     /**
-     * @return array<string, string>
+     * @return non-empty-array<string, string>
      */
-    public function toKeyValueList(): array
+    public function toValueDescriptionList(): array
     {
         $list = $this->factory->all();
 
-        $choices = [];
+        $data = [];
         foreach ($list as $enum) {
-            $choices[$enum->getValue()] = $enum->getDescription();
+            $data[$enum->getValue()] = $enum->getDescription();
         }
 
-        return $choices;
+        return $data;
     }
 
+    /**
+     * @deprecated
+     *
+     * @return non-empty-array<string, string>
+     */
+    public function toKeyValueList(): array
+    {
+        return $this->toValueDescriptionList();
+    }
+
+    /**
+     * @return non-empty-array<string, string>
+     */
+    public function toDescriptionValueList(): array
+    {
+        $list = $this->factory->all();
+
+        $data = [];
+        foreach ($list as $enum) {
+            $data[$enum->getDescription()] = $enum->getValue();
+        }
+
+        return $data;
+    }
+
+    /**
+     * @deprecated
+     *
+     * @return non-empty-array<string, string>
+     */
     public function toValueKeyList(): array
     {
-        return array_flip($this->toKeyValueList());
+        return $this->toDescriptionValueList();
+    }
+
+    /**
+     * @return non-empty-list<string>
+     */
+    public function toValues(): array
+    {
+        $list = $this->factory->all();
+
+        return array_map(static fn (EnumInterface $enum): string => $enum->getValue(), $list);
+    }
+
+    /**
+     * @return non-empty-list<string>
+     */
+    public function toDescriptions(): array
+    {
+        $list = $this->factory->all();
+
+        return array_map(static fn (EnumInterface $enum): string => $enum->getDescription(), $list);
     }
 }

@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.1.0
+
+* [**Added**] Added methods `EnumFormatter::toValues()` and `EnumFormatter::toDescriptions()`.
+* [**Deprecated**] Methods `EnumFormatter::toKeyValueList()` and `EnumFormatter::toValueKeyList()` have been deprecated and are to be replaced by `EnumFormatter::toValueDescriptionList()` and `EnumFormatter::toDescriptionValueList()` respectively, in order to have consistent names across the package.
+
 ## 3.0.1
 
 * [**Fixed**] Fixed a bug with an empty string not being handled properly during string to enum list conversion.
