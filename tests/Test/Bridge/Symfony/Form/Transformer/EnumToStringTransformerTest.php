@@ -33,11 +33,9 @@ class EnumToStringTransformerTest extends TestCase
         $this->transformer->transform(['1']);
     }
 
-    public function testThrowsAnExceptionDuringTransformIfValueIsNotAnArrayOrEnumOrNull(): void
+    public function testReturnsNullDuringTransformIfValueIsNotAnArrayOrEnumOrNull(): void
     {
-        $this->expectException(TransformationFailedException::class);
-
-        $this->transformer->transform('1');
+        $this->assertNull($this->transformer->transform('1'));
     }
 
     public function testReverseTransforms(): void
@@ -56,17 +54,8 @@ class EnumToStringTransformerTest extends TestCase
         $transformer->reverseTransform(Enum::VALID_VALUE);
     }
 
-    public function testThrowsAnExceptionDuringReverseTransformIfValueIsNotAnArrayOfStrings(): void
+    public function testReturnsNullDuringReverseTransformIfValueIsNotAnArrayOrStringOrNull(): void
     {
-        $this->expectException(TransformationFailedException::class);
-
-        $this->transformer->reverseTransform([1]);
-    }
-
-    public function testThrowsAnExceptionDuringReverseTransformIfValueIsNotAnArrayOrStringOrNull(): void
-    {
-        $this->expectException(TransformationFailedException::class);
-
-        $this->transformer->reverseTransform(1);
+        $this->assertNull($this->transformer->reverseTransform(1));
     }
 }

@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * @Annotation
- * @psalm-suppress PropertyNotSetInConstructor
+ * @psalm-suppress MissingConstructor
  */
 class EnumListConstraint extends Constraint
 {

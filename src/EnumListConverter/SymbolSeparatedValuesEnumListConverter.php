@@ -9,8 +9,14 @@ use function implode;
 
 class SymbolSeparatedValuesEnumListConverter extends AbstractEnumListConverter
 {
+    /**
+     * @var non-empty-string
+     */
     private string $symbol;
 
+    /**
+     * @param non-empty-string $symbol
+     */
     public function __construct(string $symbol)
     {
         $this->symbol = $symbol;

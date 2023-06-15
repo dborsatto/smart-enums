@@ -12,6 +12,9 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 use function is_array;
 use function is_string;
 
+/**
+ * @implements DataTransformerInterface<list<EnumInterface>|EnumInterface, list<string>|string>
+ */
 class EnumToStringTransformer implements DataTransformerInterface
 {
     /**
@@ -28,18 +31,10 @@ class EnumToStringTransformer implements DataTransformerInterface
     }
 
     /**
-     * @param list<EnumInterface>|EnumInterface|mixed $value
-     *
      * @throws TransformationFailedException
-     *
-     * @return list<string>|string|null
      */
     public function transform($value)
     {
-        if ($value === null) {
-            return null;
-        }
-
         if ($value instanceof EnumInterface) {
             return $value->getValue();
         }
@@ -57,22 +52,14 @@ class EnumToStringTransformer implements DataTransformerInterface
             return $values;
         }
 
-        throw new TransformationFailedException();
+        return null;
     }
 
     /**
-     * @param list<string>|string|mixed $value
-     *
      * @throws TransformationFailedException
-     *
-     * @return list<EnumInterface>|EnumInterface|null
      */
     public function reverseTransform($value)
     {
-        if ($value === null) {
-            return null;
-        }
-
         try {
             $factory = new EnumFactory($this->enumClass);
 
@@ -83,10 +70,6 @@ class EnumToStringTransformer implements DataTransformerInterface
             if (is_array($value)) {
                 $enums = [];
                 foreach ($value as $enumValue) {
-                    if (!is_string($enumValue)) {
-                        throw new TransformationFailedException();
-                    }
-
                     $enums[] = $factory->fromValue($enumValue);
                 }
 
@@ -96,6 +79,6 @@ class EnumToStringTransformer implements DataTransformerInterface
             throw new TransformationFailedException();
         }
 
-        throw new TransformationFailedException();
+        return null;
     }
 }
