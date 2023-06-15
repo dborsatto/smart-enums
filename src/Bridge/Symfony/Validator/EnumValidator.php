@@ -15,6 +15,9 @@ use function is_string;
 
 class EnumValidator extends ConstraintValidator
 {
+    /**
+     * @psalm-suppress MissingParamType
+     */
     public function validate($value, Constraint $constraint): void
     {
         if (!$constraint instanceof EnumConstraint) {

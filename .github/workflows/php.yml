@@ -8,18 +8,18 @@ on:
 
 jobs:
     static-analysis:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
         name: Static analysis
         steps:
             - name: Checkout
               uses: actions/checkout@v2
             - name: Psalm
-              uses: docker://vimeo/psalm-github-actions
+              uses: docker://ghcr.io/psalm/psalm-github-actions
               with:
                   composer_require_dev: true
 
     code-style:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
         name: Code style
         steps:
             - name: Checkout
@@ -28,7 +28,7 @@ jobs:
               uses: docker://oskarstark/php-cs-fixer-ga
 
     tests:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
         strategy:
             max-parallel: 1
             matrix:
@@ -36,14 +36,17 @@ jobs:
                     - '7.4'
                     - '8.0'
                     - '8.1'
+                    - '8.2'
                 include:
                     - description: 'lowest'
                       php: '7.4'
                       composer_option: '--prefer-lowest'
                     - description: '8.0'
                       php: '8.0'
-                    - description: 'latest'
+                    - description: '8.1'
                       php: '8.1'
+                    - description: 'latest'
+                      php: '8.2'
         name: Tests PHP ${{ matrix.php }}
         steps:
             - name: Checkout

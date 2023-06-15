@@ -14,6 +14,9 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use function is_subclass_of;
 
+/**
+ * @extends AbstractType<EnumInterface|list<EnumInterface>>
+ */
 class EnumType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
