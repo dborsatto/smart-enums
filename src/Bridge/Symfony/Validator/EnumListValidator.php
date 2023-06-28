@@ -8,7 +8,6 @@ use DBorsatto\SmartEnums\EnumFactory;
 use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Exception\UnexpectedValueException;
 use function array_values;
@@ -44,11 +43,7 @@ class EnumListValidator extends ConstraintValidator
         /** @var list<string> $value */
         $value = array_values($value);
 
-        try {
-            $factory = new EnumFactory($constraint->enumClass);
-        } catch (SmartEnumExceptionInterface $exception) {
-            throw new ConstraintDefinitionException('Enum class property of constraint is not valid');
-        }
+        $factory = new EnumFactory($constraint->enumClass);
 
         try {
             $factory->fromValues($value);

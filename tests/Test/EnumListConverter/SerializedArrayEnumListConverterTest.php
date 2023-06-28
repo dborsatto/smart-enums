@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DBorsatto\SmartEnums\Tests\Test\EnumListConverter;
 
 use DBorsatto\SmartEnums\EnumListConverter\SerializedArrayEnumListConverter;
-use DBorsatto\SmartEnums\Exception\SmartEnumListConverterException;
+use DBorsatto\SmartEnums\Exception\SmartEnumListCouldNotBeConvertedFromSerializedArrayException;
 use DBorsatto\SmartEnums\Tests\Stub\ConcreteEnum;
 use PHPUnit\Framework\TestCase;
 use function serialize;
@@ -24,7 +24,7 @@ class SerializedArrayEnumListConverterTest extends TestCase
     public function testThrowsDuringConversionToArrayIfSerializedStringIsNotValid(): void
     {
         $value = '{]';
-        $this->expectExceptionObject(SmartEnumListConverterException::fromSerializedArray($value));
+        $this->expectExceptionObject(SmartEnumListCouldNotBeConvertedFromSerializedArrayException::create($value));
 
         $converter = new SerializedArrayEnumListConverter();
 
@@ -34,7 +34,7 @@ class SerializedArrayEnumListConverterTest extends TestCase
     public function testThrowsDuringConversionToArrayIfSerializedStringIsNotAnArray(): void
     {
         $value = serialize(1);
-        $this->expectExceptionObject(SmartEnumListConverterException::fromSerializedArray($value));
+        $this->expectExceptionObject(SmartEnumListCouldNotBeConvertedFromSerializedArrayException::create($value));
 
         $converter = new SerializedArrayEnumListConverter();
 

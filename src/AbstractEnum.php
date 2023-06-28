@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DBorsatto\SmartEnums;
 
-use DBorsatto\SmartEnums\Exception\SmartEnumException;
+use DBorsatto\SmartEnums\Exception\SmartEnumCouldNotBeCreatedFromInvalidValueException;
 use function array_keys;
 use function array_map;
 
@@ -42,7 +42,7 @@ abstract class AbstractEnum implements EnumInterface
     public static function fromValue(string $value)
     {
         if (!static::isSupportedValue($value)) {
-            throw SmartEnumException::invalidValue($value, static::class);
+            throw SmartEnumCouldNotBeCreatedFromInvalidValueException::create($value, static::class);
         }
 
         return static::newInstance($value);

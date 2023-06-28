@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.0
+
+* [**BC BREAK**] All exceptions have been reworked. Everything still implements `SmartEnumExceptionInterface`, but there is more granularity in how exceptions are defined. For this reason, `SmartEnumException` and `SmartEnumListConverterException` no longer exist.
+* [**BC BREAK**] Many checks have been removed in favor of better static analysis annotations. `EnumFactory` will not check if the given class string is actually a subclass of `EnumInterface`, as static analysis will do that for it.
+* [**BC BREAK**] Deprecated methods in `EnumFormatter` have been removed.
+
 ## 3.1.0
 
 * [**Added**] Added methods `EnumFormatter::toValues()` and `EnumFormatter::toDescriptions()`.

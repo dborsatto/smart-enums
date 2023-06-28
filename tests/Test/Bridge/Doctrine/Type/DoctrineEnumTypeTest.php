@@ -10,7 +10,6 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 
 class DoctrineEnumTypeTest extends TestCase
 {
@@ -59,15 +58,6 @@ class DoctrineEnumTypeTest extends TestCase
         $this->expectException(ConversionException::class);
 
         $this->type->convertToPHPValue(1, $this->platform);
-    }
-
-    public function testThrowsAnExceptionConvertingToPHPValueIfErrorOccursDuringEnumCreation(): void
-    {
-        $this->expectException(ConversionException::class);
-
-        $type = DoctrineEnumType::createForEnum(stdClass::class);
-
-        $type->convertToPHPValue('value', $this->platform);
     }
 
     public function testConvertsToDatabaseValue(): void

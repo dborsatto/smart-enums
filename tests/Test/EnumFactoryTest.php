@@ -8,17 +8,9 @@ use DBorsatto\SmartEnums\EnumFactory;
 use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
 use DBorsatto\SmartEnums\Tests\Stub\Enum;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 
 class EnumFactoryTest extends TestCase
 {
-    public function testThrowsAnExceptionIfEnumClassIsNotValid(): void
-    {
-        $this->expectException(SmartEnumExceptionInterface::class);
-
-        new EnumFactory(stdClass::class);
-    }
-
     public function testForwardsCallsToEnumClass(): void
     {
         $factory = new EnumFactory(Enum::class);

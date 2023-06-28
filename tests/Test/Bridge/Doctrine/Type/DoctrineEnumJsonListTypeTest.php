@@ -10,7 +10,6 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 
 class DoctrineEnumJsonListTypeTest extends TestCase
 {
@@ -74,15 +73,6 @@ class DoctrineEnumJsonListTypeTest extends TestCase
         $this->expectException(ConversionException::class);
 
         $this->type->convertToPHPValue('{"values":[1, 2]}', $this->platform);
-    }
-
-    public function testThrowsAnExceptionConvertingToPHPValueIfErrorOccursDuringEnumCreation(): void
-    {
-        $this->expectException(ConversionException::class);
-
-        $type = DoctrineEnumJsonListType::createForEnum(stdClass::class);
-
-        $type->convertToPHPValue('value', $this->platform);
     }
 
     public function testConvertsToDatabaseValue(): void

@@ -7,8 +7,6 @@ namespace DBorsatto\SmartEnums\Tests\Test\Bridge\Symfony\Form\Transformer;
 use DBorsatto\SmartEnums\Bridge\Symfony\Form\Transformer\EnumToStringTransformer;
 use DBorsatto\SmartEnums\Tests\Stub\Enum;
 use PHPUnit\Framework\TestCase;
-use stdClass;
-use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class EnumToStringTransformerTest extends TestCase
 {
@@ -26,36 +24,10 @@ class EnumToStringTransformerTest extends TestCase
         $this->assertSame([Enum::VALID_VALUE], $this->transformer->transform([Enum::fromValue(Enum::VALID_VALUE)]));
     }
 
-    public function testThrowsAnExceptionDuringTransformIfValueIsNotAnArrayOfEnums(): void
-    {
-        $this->expectException(TransformationFailedException::class);
-
-        $this->transformer->transform(['1']);
-    }
-
-    public function testReturnsNullDuringTransformIfValueIsNotAnArrayOrEnumOrNull(): void
-    {
-        $this->assertNull($this->transformer->transform('1'));
-    }
-
     public function testReverseTransforms(): void
     {
         $this->assertNull($this->transformer->reverseTransform(null));
         $this->assertEquals(Enum::fromValue(Enum::VALID_VALUE), $this->transformer->reverseTransform(Enum::VALID_VALUE));
         $this->assertEquals([Enum::fromValue(Enum::VALID_VALUE)], $this->transformer->reverseTransform([Enum::VALID_VALUE]));
-    }
-
-    public function testThrowsAnExceptionDuringReverseTransformingConvertingToPHPValueIfErrorOccursDuringEnumCreation(): void
-    {
-        $this->expectException(TransformationFailedException::class);
-
-        $transformer = new EnumToStringTransformer(stdClass::class);
-
-        $transformer->reverseTransform(Enum::VALID_VALUE);
-    }
-
-    public function testReturnsNullDuringReverseTransformIfValueIsNotAnArrayOrStringOrNull(): void
-    {
-        $this->assertNull($this->transformer->reverseTransform(1));
     }
 }

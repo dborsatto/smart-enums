@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace DBorsatto\SmartEnums\EnumListConverter;
 
 use DBorsatto\SmartEnums\EnumFactory;
-use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
-use DBorsatto\SmartEnums\Exception\SmartEnumListConverterException;
+use DBorsatto\SmartEnums\Exception\SmartEnumListConverterExceptionInterface;
+use DBorsatto\SmartEnums\Exception\SmartEnumListCouldNotBeConvertedFromInvalidListElementException;
 use function is_string;
 
 abstract class AbstractEnumListConverter implements EnumListConverterInterface
@@ -17,7 +17,7 @@ abstract class AbstractEnumListConverter implements EnumListConverterInterface
         $enumStrings = [];
         foreach ($values as $arrayValue) {
             if (!is_string($arrayValue)) {
-                throw SmartEnumListConverterException::fromInvalidListElement($arrayValue);
+                throw SmartEnumListCouldNotBeConvertedFromInvalidListElementException::create($arrayValue);
             }
 
             $enumStrings[] = $arrayValue;
@@ -39,7 +39,7 @@ abstract class AbstractEnumListConverter implements EnumListConverterInterface
     }
 
     /**
-     * @throws SmartEnumExceptionInterface
+     * @throws SmartEnumListConverterExceptionInterface
      */
     abstract protected function convertToArray(string $value): array;
 

@@ -4,33 +4,30 @@ declare(strict_types=1);
 
 namespace DBorsatto\SmartEnums;
 
-use DBorsatto\SmartEnums\Exception\SmartEnumException;
 use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
-use function is_subclass_of;
 
+/**
+ * @template T of EnumInterface
+ */
 class EnumFactory
 {
     /**
-     * @var class-string<EnumInterface>
+     * @var class-string<T>
      */
     private string $enumClass;
 
     /**
-     * @param class-string<EnumInterface> $enumClass
-     *
-     * @throws SmartEnumExceptionInterface
+     * @param class-string<T> $enumClass
      */
     public function __construct(string $enumClass)
     {
-        if (!is_subclass_of($enumClass, EnumInterface::class)) {
-            throw SmartEnumException::invalidEnumClass($enumClass);
-        }
-
         $this->enumClass = $enumClass;
     }
 
     /**
      * @throws SmartEnumExceptionInterface
+     *
+     * @return T
      */
     public function fromValue(string $value): EnumInterface
     {
@@ -42,7 +39,7 @@ class EnumFactory
      *
      * @throws SmartEnumExceptionInterface
      *
-     * @return list<EnumInterface>
+     * @return list<T>
      */
     public function fromValues(array $values): array
     {
@@ -50,7 +47,7 @@ class EnumFactory
     }
 
     /**
-     * @return non-empty-list<EnumInterface>
+     * @return non-empty-list<T>
      */
     public function all(): array
     {
