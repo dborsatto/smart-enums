@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DBorsatto\SmartEnums\EnumListConverter;
 
-use DBorsatto\SmartEnums\Exception\SmartEnumListConverterException;
+use DBorsatto\SmartEnums\Exception\SmartEnumListCouldNotBeConvertedFromJsonException;
 use Throwable;
 use function is_array;
 use function json_decode;
@@ -25,16 +25,16 @@ class JsonEnumListConverter extends AbstractEnumListConverter
         try {
             $decoded = json_decode($value, true, 512, JSON_THROW_ON_ERROR);
         } catch (Throwable $exception) {
-            throw SmartEnumListConverterException::fromJson($value, $this->propertyName);
+            throw SmartEnumListCouldNotBeConvertedFromJsonException::create($value, $this->propertyName);
         }
 
         if (!is_array($decoded)) {
-            throw SmartEnumListConverterException::fromJson($value, $this->propertyName);
+            throw SmartEnumListCouldNotBeConvertedFromJsonException::create($value, $this->propertyName);
         }
 
         $values = $decoded[$this->propertyName] ?? null;
         if (!is_array($values)) {
-            throw SmartEnumListConverterException::fromJson($value, $this->propertyName);
+            throw SmartEnumListCouldNotBeConvertedFromJsonException::create($value, $this->propertyName);
         }
 
         return $values;

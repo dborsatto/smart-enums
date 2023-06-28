@@ -4,17 +4,20 @@ declare(strict_types=1);
 
 namespace DBorsatto\SmartEnums;
 
-use DBorsatto\SmartEnums\Exception\SmartEnumExceptionInterface;
 use function array_map;
 
+/**
+ * @template T of EnumInterface
+ */
 class EnumFormatter
 {
+    /**
+     * @var EnumFactory<T>
+     */
     private EnumFactory $factory;
 
     /**
-     * @param class-string<EnumInterface> $enumClass
-     *
-     * @throws SmartEnumExceptionInterface
+     * @param class-string<T> $enumClass
      */
     public function __construct(string $enumClass)
     {
@@ -37,16 +40,6 @@ class EnumFormatter
     }
 
     /**
-     * @deprecated
-     *
-     * @return non-empty-array<string, string>
-     */
-    public function toKeyValueList(): array
-    {
-        return $this->toValueDescriptionList();
-    }
-
-    /**
      * @return non-empty-array<string, string>
      */
     public function toDescriptionValueList(): array
@@ -59,16 +52,6 @@ class EnumFormatter
         }
 
         return $data;
-    }
-
-    /**
-     * @deprecated
-     *
-     * @return non-empty-array<string, string>
-     */
-    public function toValueKeyList(): array
-    {
-        return $this->toDescriptionValueList();
     }
 
     /**

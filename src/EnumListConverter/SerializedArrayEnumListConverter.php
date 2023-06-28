@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DBorsatto\SmartEnums\EnumListConverter;
 
-use DBorsatto\SmartEnums\Exception\SmartEnumListConverterException;
+use DBorsatto\SmartEnums\Exception\SmartEnumListCouldNotBeConvertedFromSerializedArrayException;
 use Exception;
 use function is_array;
 use function restore_error_handler;
@@ -17,19 +17,19 @@ class SerializedArrayEnumListConverter extends AbstractEnumListConverter
     protected function convertToArray(string $value): array
     {
         set_error_handler(static function () use ($value): void {
-            throw SmartEnumListConverterException::fromSerializedArray($value);
+            throw SmartEnumListCouldNotBeConvertedFromSerializedArrayException::create($value);
         });
 
         try {
             $values = unserialize($value);
         } catch (Exception $exception) {
-            throw SmartEnumListConverterException::fromSerializedArray($value);
+            throw SmartEnumListCouldNotBeConvertedFromSerializedArrayException::create($value);
         } finally {
             restore_error_handler();
         }
 
         if (!is_array($values)) {
-            throw SmartEnumListConverterException::fromSerializedArray($value);
+            throw SmartEnumListCouldNotBeConvertedFromSerializedArrayException::create($value);
         }
 
         return $values;
