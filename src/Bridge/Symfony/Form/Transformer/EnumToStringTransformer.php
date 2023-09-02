@@ -56,6 +56,8 @@ class EnumToStringTransformer implements DataTransformerInterface
     }
 
     /**
+     * @param non-empty-string|list<non-empty-string>|null $value
+     *
      * @throws TransformationFailedException
      */
     public function reverseTransform($value)

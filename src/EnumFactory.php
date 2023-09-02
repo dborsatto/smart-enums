@@ -25,6 +25,8 @@ class EnumFactory
     }
 
     /**
+     * @param non-empty-string $value
+     *
      * @throws SmartEnumExceptionInterface
      *
      * @return T
@@ -35,7 +37,7 @@ class EnumFactory
     }
 
     /**
-     * @param list<string> $values
+     * @param list<non-empty-string> $values
      *
      * @throws SmartEnumExceptionInterface
      *

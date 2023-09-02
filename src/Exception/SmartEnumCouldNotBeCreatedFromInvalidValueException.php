@@ -10,6 +10,7 @@ use function sprintf;
 class SmartEnumCouldNotBeCreatedFromInvalidValueException extends AbstractSmartEnumException
 {
     /**
+     * @param non-empty-string            $value
      * @param class-string<EnumInterface> $enumClass
      */
     public static function create(string $value, string $enumClass): self

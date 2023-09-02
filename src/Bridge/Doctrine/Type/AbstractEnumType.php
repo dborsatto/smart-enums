@@ -44,6 +44,7 @@ abstract class AbstractEnumType extends Type
         }
 
         try {
+            /** @var non-empty-string $value */
             $factory = new EnumFactory($this->getEnumClass());
 
             return $factory->fromValue($value);

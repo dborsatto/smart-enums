@@ -20,6 +20,9 @@ class JsonEnumListConverter extends AbstractEnumListConverter
         $this->propertyName = $propertyName;
     }
 
+    /**
+     * @psalm-suppress MoreSpecificReturnType
+     */
     protected function convertToArray(string $value): array
     {
         try {
@@ -37,6 +40,7 @@ class JsonEnumListConverter extends AbstractEnumListConverter
             throw SmartEnumListCouldNotBeConvertedFromJsonException::create($value, $this->propertyName);
         }
 
+        /** @psalm-suppress LessSpecificReturnStatement */
         return $values;
     }
 

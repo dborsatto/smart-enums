@@ -16,6 +16,7 @@ abstract class AbstractEnumListConverter implements EnumListConverterInterface
         $values = $this->convertToArray($value);
         $enumStrings = [];
         foreach ($values as $arrayValue) {
+            /** @psalm-suppress DocblockTypeContradiction */
             if (!is_string($arrayValue)) {
                 throw SmartEnumListCouldNotBeConvertedFromInvalidListElementException::create($arrayValue);
             }
@@ -40,11 +41,13 @@ abstract class AbstractEnumListConverter implements EnumListConverterInterface
 
     /**
      * @throws SmartEnumListConverterExceptionInterface
+     *
+     * @return list<non-empty-string>
      */
     abstract protected function convertToArray(string $value): array;
 
     /**
-     * @param list<string> $values
+     * @param list<non-empty-string> $values
      */
     abstract protected function convertToString(array $values): string;
 }

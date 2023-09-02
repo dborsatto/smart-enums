@@ -22,12 +22,16 @@ class SymbolSeparatedValuesEnumListConverter extends AbstractEnumListConverter
         $this->symbol = $symbol;
     }
 
+    /**
+     * @psalm-suppress MoreSpecificReturnType
+     */
     protected function convertToArray(string $value): array
     {
         if ($value === '') {
             return [];
         }
 
+        /** @psalm-suppress LessSpecificReturnStatement */
         return explode($this->symbol, $value);
     }
 

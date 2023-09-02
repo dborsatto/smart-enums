@@ -14,19 +14,31 @@ abstract class AbstractEnum implements EnumInterface
      * @var array<string, static>
      */
     private static array $instances = [];
+
+    /**
+     * @var non-empty-string
+     */
     protected string $value;
 
+    /**
+     * @param non-empty-string $value
+     */
     final private function __construct(string $value)
     {
         $this->value = $value;
     }
 
+    /**
+     * @return non-empty-string
+     */
     public function __toString(): string
     {
         return $this->value;
     }
 
     /**
+     * @param non-empty-string $value
+     *
      * @return static
      */
     protected static function newInstance(string $value): self
@@ -48,6 +60,9 @@ abstract class AbstractEnum implements EnumInterface
         return static::newInstance($value);
     }
 
+    /**
+     * @param non-empty-string $value
+     */
     private static function isSupportedValue(string $value): bool
     {
         foreach (array_keys(static::getValues()) as $key) {
@@ -93,7 +108,7 @@ abstract class AbstractEnum implements EnumInterface
     }
 
     /**
-     * @return non-empty-array<string, string>
+     * @return non-empty-array<non-empty-string, non-empty-string>
      */
     abstract protected static function getValues(): array;
 }

@@ -34,6 +34,7 @@ class EnumValidator extends ConstraintValidator
         $factory = new EnumFactory($constraint->enumClass);
 
         try {
+            /** @var non-empty-string $value */
             $factory->fromValue($value);
         } catch (SmartEnumExceptionInterface $exception) {
             $this->context->buildViolation($constraint->message)
