@@ -25,7 +25,7 @@ class EnumFormatter
     }
 
     /**
-     * @return non-empty-array<string, string>
+     * @return non-empty-array<non-empty-string, non-empty-string>
      */
     public function toValueDescriptionList(): array
     {
@@ -40,7 +40,7 @@ class EnumFormatter
     }
 
     /**
-     * @return non-empty-array<string, string>
+     * @return non-empty-array<non-empty-string, non-empty-string>
      */
     public function toDescriptionValueList(): array
     {
@@ -55,7 +55,7 @@ class EnumFormatter
     }
 
     /**
-     * @return non-empty-list<string>
+     * @return non-empty-list<non-empty-string>
      */
     public function toValues(): array
     {
@@ -65,7 +65,7 @@ class EnumFormatter
     }
 
     /**
-     * @return non-empty-list<string>
+     * @return non-empty-list<non-empty-string>
      */
     public function toDescriptions(): array
     {

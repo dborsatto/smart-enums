@@ -40,7 +40,7 @@ class EnumListValidator extends ConstraintValidator
             }
         }
 
-        /** @var list<string> $value */
+        /** @var list<non-empty-string> $value */
         $value = array_values($value);
 
         $factory = new EnumFactory($constraint->enumClass);

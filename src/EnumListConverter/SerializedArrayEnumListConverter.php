@@ -14,6 +14,9 @@ use function unserialize;
 
 class SerializedArrayEnumListConverter extends AbstractEnumListConverter
 {
+    /**
+     * @psalm-suppress MoreSpecificReturnType
+     */
     protected function convertToArray(string $value): array
     {
         set_error_handler(static function () use ($value): void {
@@ -32,6 +35,7 @@ class SerializedArrayEnumListConverter extends AbstractEnumListConverter
             throw SmartEnumListCouldNotBeConvertedFromSerializedArrayException::create($value);
         }
 
+        /** @psalm-suppress LessSpecificReturnStatement */
         return $values;
     }
 

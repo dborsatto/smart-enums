@@ -11,6 +11,7 @@ interface EnumListConverterInterface
 {
     /**
      * @param class-string<EnumInterface> $enumClass
+     * @param non-empty-string            $value
      *
      * @throws SmartEnumExceptionInterface
      *
