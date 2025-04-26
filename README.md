@@ -4,6 +4,12 @@
 [![PHP version](https://img.shields.io/packagist/php-v/dborsatto/smart-enums.svg)](https://packagist.org/packages/dborsatto/smart-enums)
 [![Packagist](https://img.shields.io/github/license/dborsatto/smart-enums.php.svg)](https://packagist.org/packages/dborsatto/smart-enums)
 
+## Deprecation notice
+
+As enums are now native in PHP, this library is deprecated and will not be maintained anymore. We recommend you to use the native enum feature in PHP 8.1.
+
+---
+
 `dborsatto/smart-enums` is a PHP library that allows you to use enums in PHP without having to wait for version 8.1 It provides integration with Doctrine, so you can use enum objects in your entities, and with Symfony forms.
 
 ## Installation
